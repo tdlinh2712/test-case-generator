@@ -1,10 +1,11 @@
 import React from 'react';
+import AppLayout from './AppLayout';
 
 const App = () => {
     return (
-        <div>
+        <AppLayout>
             test case generator
-        </div>
+        </AppLayout>
     )
 }
 
