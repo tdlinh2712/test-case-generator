@@ -4,7 +4,12 @@ import AppLayout from './AppLayout';
 const App = () => {
     return (
         <AppLayout>
-            test case generator
+            <div>
+                child 1
+            </div>
+            <div>
+                child 2
+            </div>
         </AppLayout>
     )
 }
