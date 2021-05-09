@@ -1,5 +1,6 @@
 export default [
     {title:"Problem",name:"problem"},
-    {title:"Submissions",name:"submissions"},
-    {title:"Test Report",name:"report"}
+    {title:"Test Cases", name:"test-cases"},
+    {title:"Submit Scripts",name:"submissions"},
+    {title:"Test Results",name:"results"}
 ];

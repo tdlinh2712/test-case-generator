@@ -5,7 +5,7 @@ import TabNames from './TabNames'
 
 const Bar = styled.div`
     display: grid;
-    grid-template-columns: auto 100px 100px 100px 100px ;
+    grid-template-columns: auto 100px 100px 100px 100px auto ;
     margin-bottom: 40px;
 `
 

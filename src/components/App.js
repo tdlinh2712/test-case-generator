@@ -1,7 +1,9 @@
 import React from 'react';
 import AppLayout from './AppLayout';
-import Container from './Container';
 import Dashboard from './Dashboard';
+
+import * as actions from '../actions';
+import { connect } from 'react-redux';
 
 const App = () => {
     return (
@@ -11,4 +13,5 @@ const App = () => {
     )
 }
 
-export default App;
+
+export default connect(null, actions)(App);
