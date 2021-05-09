@@ -1,15 +1,12 @@
 import React from 'react';
 import AppLayout from './AppLayout';
+import Container from './Container';
+import Dashboard from './Dashboard';
 
 const App = () => {
     return (
         <AppLayout>
-            <div>
-                child 1
-            </div>
-            <div>
-                child 2
-            </div>
+           <Dashboard/>
         </AppLayout>
     )
 }
