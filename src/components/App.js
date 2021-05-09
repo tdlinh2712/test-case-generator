@@ -1,11 +1,12 @@
-import React from 'react';
+import React from "react";
+import CodeEditor from "./CodeEditor/CodeEditor";
 
 const App = () => {
-    return (
-        <div>
-            test case generator
-        </div>
-    )
-}
+  return (
+    <div>
+      <CodeEditor />
+    </div>
+  );
+};
 
 export default App;
