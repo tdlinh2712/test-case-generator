@@ -13,5 +13,4 @@ const App = () => {
     )
 }
 
-
 export default connect(null, actions)(App);
