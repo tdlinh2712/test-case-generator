@@ -11,8 +11,6 @@ const CodeEditor = () => {
   return (
     <AceEditor
       placeholder="Enter your code here"
-      height="500px"
-      width="1200px"
       mode="c_cpp"
       theme="monokai"
       name="blah2"

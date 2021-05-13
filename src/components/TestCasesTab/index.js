@@ -1,23 +1,39 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import styled from 'styled-components';
-import Card, { CardWrapper } from '../../shared/Card';
-import TestCases from './TestCases';
-
+import Grid from '@material-ui/core/Grid';
+import Container from '@material-ui/core/Container';
 import { generateTestCases } from '../../actions';
+import CodeEditor from '../CodeEditor/CodeEditor';
+import Card from '@material-ui/core/Card';
 
 
 const TestCasesTab = ({ file, generateTests }) => {
 
     return (
-        <Grid>
-            <TestCases />
-            <CardWrapper>
-                <p>Scripts in Test Cases</p>
-                <Card>
-
-                </Card>
-            </CardWrapper>
+        <Grid container spacing={3}>
+            <Grid item xs={6}>
+                <Grid item xs>
+                    <p>
+                        Test cases:
+                    </p>
+                    <Card>
+                        heyy
+                    </Card>
+                    <p>
+                        Log:
+                    </p>
+                    <Card>
+                        heyy
+                    </Card>
+                </Grid>
+                <Grid item xs>
+                    heyy
+                </Grid>
+            </Grid>
+            <Grid item xs={6}>
+                <p>Code editor</p>
+                <CodeEditor />
+            </Grid>
         </Grid>
     )
 }
@@ -31,9 +47,3 @@ const mapStateToProps = ({file}) => ({
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(TestCasesTab);
-
-const Grid = styled.div`
-    display: grid;
-    grid-template-columns: 1fr 1fr ;
-    margin-bottom: 40px;
-`
