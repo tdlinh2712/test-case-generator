@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
-import { generateTestCases } from '../../actions';
+import * as actions from '../../actions';
 import CodeEditor from '../CodeEditor/CodeEditor';
 import Card from '@material-ui/core/Card';
 import Paper from '@material-ui/core/Paper';
@@ -20,12 +20,14 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-const CodePanel = () => {
+const CodePanel = (props) => {
     const classes = useStyles();
     const inputEl = React.useRef(null);
+    const initCode =
+    '#include <iostream>\nusing namespace std;\nint main(){\n\tcout<< "Hello World";\n\treturn 0; \n}';
+    const [sourceCode, setSourceCode] = useState(initCode);
 
     const onButtonClick = () => {
-        console.log("inside")
         // `current` points to the mounted file input element
         inputEl.current.click();
     };
@@ -35,16 +37,22 @@ const CodePanel = () => {
         const reader = new FileReader()
         reader.onload = async (e) => { 
           const text = (e.target.result)
-          console.log(text)
+          setSourceCode(text);
         };
         reader.readAsText(e.target.files[0])
     }
+
+    const submitCode = () => {
+        console.log(props);
+        props.createAttempts(sourceCode);
+    }
+
 
     return (
         <React.Fragment>
             <Typography variant="h6" gutterBottom>Code editor</Typography>
             <Paper>
-                <CodeEditor />
+                <CodeEditor code={sourceCode} setSourceCode={setSourceCode}/>
             </Paper>
             <Container className={classes.container}>
                 <input
@@ -62,7 +70,7 @@ const CodePanel = () => {
                     </Button>
                 </label>
                     
-                <Button variant="contained" color="primary">
+                <Button variant="contained" color="primary" onClick={submitCode}>
                     Submit code
                 </Button>
             </Container>
@@ -70,4 +78,5 @@ const CodePanel = () => {
     )
 }
 
-export default CodePanel;
+
+export default connect(null, actions) (CodePanel);
