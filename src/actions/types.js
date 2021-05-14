@@ -1,2 +1,3 @@
-export const GENERATE_TESTS = 'generate_tests';
-export const CREATE_ATTEMPTS = 'create_attempts';
+export const GENERATE_TESTS = 'GENERATE_TESTS';
+export const CREATE_ATTEMPTS = 'CREATE_ATTEMPTS';
+export const FETCH_RESULTS = 'FETCH_RESULTS';
