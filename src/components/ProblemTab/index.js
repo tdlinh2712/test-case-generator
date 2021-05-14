@@ -1,15 +1,14 @@
 import React from 'react';
-import Card from '../../shared/Card';
 
 const ProblemTab = () => {
     return (
         <div>
-            <Card>
+            <div>
                 <p>Problem</p>
-            </Card>
-            <Card>
+            </div>
+            <div>
                 <p>Upload code</p>
-            </Card>
+            </div>
         </div>
     )
 }

@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -59,7 +58,7 @@ const App = () => {
                 <p>Test Tool</p>
             </Container>
             <AppBar position="static">
-            <Tabs onChange={handleChange} aria-label="simple tabs example">
+            <Tabs value={value} onChange={handleChange} >
                 <Tab label="Problem" {...a11yProps(0)} />
                 <Tab label="Script" {...a11yProps(1)} />
             </Tabs>

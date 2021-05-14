@@ -11,11 +11,13 @@ const CodeEditor = () => {
   return (
     <AceEditor
       placeholder="Enter your code here"
+      height = "300px"
+      width = "660px"
       mode="c_cpp"
       theme="monokai"
       name="blah2"
       onChange={setSourceCode}
-      fontSize={18}
+      fontSize={14}
       showGutter={true}
       highlightActiveLine={true}
       value={sourceCode}
