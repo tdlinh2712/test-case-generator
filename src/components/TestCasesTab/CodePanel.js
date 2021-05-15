@@ -39,11 +39,15 @@ const CodePanel = (props) => {
           const text = (e.target.result)
           setSourceCode(text);
         };
-        reader.readAsText(e.target.files[0])
+        if (e.target.files) {
+            if (e.target.files[0]) {
+                reader.readAsText(e.target.files[0])
+            }
+        }
+        
     }
 
     const submitCode = () => {
-        console.log(props);
         props.createAttempts(sourceCode);
     }
 

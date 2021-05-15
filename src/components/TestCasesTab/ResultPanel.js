@@ -1,18 +1,53 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { connect } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
-import Container from '@material-ui/core/Container';
-import { generateTestCases } from '../../actions';
-import CodeEditor from '../CodeEditor/CodeEditor';
-import Card from '@material-ui/core/Card';
-import Paper from '@material-ui/core/Paper';
-import Button from '@material-ui/core/Button';
-import CodePanel from './CodePanel';
+import * as actions from '../../actions';
 import { DataGrid } from '@material-ui/data-grid';
 import { Typography } from '@material-ui/core';
+import Logs from './Logs';
 
-const ResultPanel = () => {
-    
+import { makeStyles, lighten } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => {
+    const getColor = (color) => color;
+  
+    const getHoverColor = (color) => lighten(color, 0.5);
+  
+    return {
+      root: {
+        '& .row-theme--PENDING': {
+          color: getColor(theme.palette.info.main),
+          '&:hover': {
+            color: getHoverColor(theme.palette.info.main),
+          },
+        },
+        '& .row-theme--ACCEPTED': {
+          color: getColor('#008450'),
+          '&:hover': {
+            color: getHoverColor('#008450'),
+          },
+        },
+        '& .row-theme--FAILED': {
+          color: getColor('#B81D13'),
+          '&:hover': {
+            color: getHoverColor('#B81D13'),
+          },
+        },
+      },
+    };
+  });
+  
+
+const ResultPanel = ({testCases, attemptId, fetchResults}) => {
+    const classes = useStyles();
+    const [selection, setSelection] = useState(null);
+    useEffect(() => {
+        if (attemptId) {
+            console.log(attemptId);
+            fetchResults({ attemptId, testCases });
+        }
+    }, [attemptId]);
+
     return (
         <React.Fragment>
             <Grid item xs>
@@ -20,33 +55,22 @@ const ResultPanel = () => {
                 <Typography variant="h6" gutterBottom>
                     Test Cases
                 </Typography>
-                    <div style={{ height: 250, width: '100%' }}>
+                    <div style={{ height: 350, width: '100%' }} className={classes.root}>
                         <DataGrid 
-                            columns={[{ field: 'Input' }, { field: 'Output' }, { field: 'Expected Output' }, { field: "Status" }]}
-                            rows={[
-                            ]}
+                            rowHeight={25}
+                            columns={[{field: 'No.'}, { field: 'id', width: 200 }, { field: 'Verdict', width: 200 }]}
+                            rows={testCases ? testCases.map(({testCaseId, verdict}, index) => ({'No.': index, id: testCaseId, Verdict: verdict})) : []}
+                            getRowClassName={(params) => `row-theme--${params.getValue('Verdict')}`}
+                            onRowSelected={(e) => setSelection(e.data)}
                         />
                     </div>
                 </div>
                 <div>
-                    <Typography variant="h6" gutterBottom>
-                        Logs
-                    </Typography>
-                    <div style={{ height: 250, width: '100%' }}>
-                        <DataGrid 
-                            columns={[{ field: 'Test Case' }]}
-                            rows={[
-                            ]}
-                        />
-                    </div>
+                    <Logs test={selection}/>
                 </div>
-                
-            </Grid>
-            <Grid item xs>
-                heyy
             </Grid>
         </React.Fragment>
     )
 }
 
-export default ResultPanel;
+export default connect(null, actions)(ResultPanel);
