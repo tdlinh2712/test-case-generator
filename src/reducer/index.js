@@ -2,12 +2,15 @@
 const intialState = {
   file: null,
   testCases: null,
-  attemptId: null
+  attemptId: null,
+  testDetails: []
 }
 
 export default function testReducer(state = intialState, action) {
     // The reducer normally looks at the action type field to decide what happens
     switch (action.type) {
+      case 'RESET_STATE':
+        return intialState;
       case 'GENERATE_TESTS':
       // Do something here based on the different types of actions
         return state;
@@ -26,6 +29,11 @@ export default function testReducer(state = intialState, action) {
             } : testCase
           )
         }
+      case 'FETCH_TEST_DETAIL':
+        return {
+          ...state,
+          testDetails: [...state.testDetails, action.payload]
+        };
       default:
         // If this reducer doesn't recognize the action type, or doesn't
         // care about this specific action, return the existing state unchanged

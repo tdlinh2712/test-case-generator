@@ -38,12 +38,11 @@ const useStyles = makeStyles((theme) => {
   });
   
 
-const ResultPanel = ({testCases, attemptId, fetchResults}) => {
+const ResultPanel = ({ testCases, attemptId, fetchResults, getTestDetails }) => {
     const classes = useStyles();
     const [selection, setSelection] = useState(null);
     useEffect(() => {
         if (attemptId) {
-            console.log(attemptId);
             fetchResults({ attemptId, testCases });
         }
     }, [attemptId]);
