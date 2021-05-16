@@ -1,8 +1,6 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
-import * as actions from '../../actions';
-import { DataGrid } from '@material-ui/data-grid';
 import { Typography, Box } from '@material-ui/core';
 import { boxStyles } from '../styles';
 
@@ -10,7 +8,6 @@ import { boxStyles } from '../styles';
 const Logs = ({test, testDetails}) => {
     const classes = boxStyles();
     const [testDetail, setTestDetail] = useState(null);
-
     useEffect(() => {
         setTestDetail(getTestDetail(test, testDetails));
     }, [testDetails, test])

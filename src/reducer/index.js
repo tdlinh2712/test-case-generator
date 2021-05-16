@@ -1,6 +1,5 @@
 
 const intialState = {
-  file: null,
   testCases: null,
   attemptId: null,
   testDetails: [],

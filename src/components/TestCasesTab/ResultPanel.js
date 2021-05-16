@@ -1,10 +1,9 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import * as actions from '../../actions';
 import { DataGrid } from '@material-ui/data-grid';
 import { Typography } from '@material-ui/core';
-import Logs from './Logs';
 
 import { makeStyles, lighten } from '@material-ui/core/styles';
 
@@ -38,9 +37,8 @@ const useStyles = makeStyles((theme) => {
   });
   
 
-const ResultPanel = ({ testCases, attemptId, fetchResults, testDetails, selectedTest, setSelectedTest }) => {
+const ResultPanel = ({ testCases, attemptId, fetchResults, testDetails, setSelectedTest }) => {
     const classes = useStyles();
-    //const [selection, setSelection] = useState(null);
     useEffect(() => {
         if (attemptId && testDetails.length == 0) {
             fetchResults({ attemptId, testCases });
@@ -50,20 +48,18 @@ const ResultPanel = ({ testCases, attemptId, fetchResults, testDetails, selected
     return (
         <React.Fragment>
             <Grid item xs>
-                <div>
                 <Typography variant="h6" gutterBottom>
                     Test Cases
                 </Typography>
-                    <div style={{ height: 350, width: '100%' }} className={classes.root}>
-                        <DataGrid 
-                            rowHeight={25}
-                            headerHeight={50}
-                            columns={[{field: 'No.'}, { field: 'id', width: 200 }, { field: 'Verdict', width: 200 }]}
-                            rows={testCases ? testCases.map(({testCaseId, verdict}, index) => ({'No.': index, id: testCaseId, Verdict: verdict})) : []}
-                            getRowClassName={(params) => `row-theme--${params.getValue('Verdict')}`}
-                            onRowSelected={(e) => setSelectedTest(e.data)}
-                        />
-                    </div>
+                <div style={{ height: 350, width: '100%' }} className={classes.root}>
+                  <DataGrid 
+                    rowHeight={25}
+                    headerHeight={50}
+                    columns={[{field: 'No.'}, { field: 'id', width: 200 }, { field: 'Verdict', width: 200 }]}
+                    rows={testCases ? testCases.map(({testCaseId, verdict}, index) => ({'No.': index, id: testCaseId, Verdict: verdict})) : []}
+                    getRowClassName={(params) => `row-theme--${params.getValue('Verdict')}`}
+                    onRowSelected={(e) => setSelectedTest(e.data)}
+                  />
                 </div>
             </Grid>
         </React.Fragment>

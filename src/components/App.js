@@ -10,7 +10,6 @@ import ProblemTab from './ProblemTab';
 import TestCasesTab from './TestCasesTab';
 import * as actions from '../actions';
 import { connect } from 'react-redux';
-import { Container } from '@material-ui/core';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -24,7 +23,7 @@ function TabPanel(props) {
         {...other}
       >
         {value === index && (
-          <Box p={3}>
+          <Box p={2}>
             <Typography>{children}</Typography>
           </Box>
         )}

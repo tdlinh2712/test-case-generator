@@ -15,7 +15,6 @@ const TestCasesTab = ({ testCases, attemptId, testDetails, readCodeOnly }) => {
                     attemptId = {attemptId} 
                     testCases={testCases} 
                     testDetails={testDetails} 
-                    selectedTest={selectedTest}
                     setSelectedTest={setSelectedTest}
                  />
             </Grid>

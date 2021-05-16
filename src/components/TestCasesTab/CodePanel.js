@@ -1,17 +1,15 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import * as actions from '../../actions';
 import CodeEditor from '../CodeEditor/CodeEditor';
-import Card from '@material-ui/core/Card';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
     container: {
       display: 'flex',
       flexWrap: 'wrap',

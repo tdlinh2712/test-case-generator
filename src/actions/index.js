@@ -35,13 +35,3 @@ export const fetchResults = ( {attemptId, testCases} ) => async dispatch => {
     }
     
 }
-
-export const getTestDetails = ( attemptId, testCaseId ) => async dispatch => {
-    try {
-       // dispatch({type: GET_TEST})
-        //const res = await axios.get(`${baseUrl}/attempts/${attemptId}/${testCaseId}`);
-        //console.log(res.data);
-    } catch (e) {
-        console.log(e);
-    }
-}
