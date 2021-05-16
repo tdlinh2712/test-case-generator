@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-const CodePanel = (props) => {
+const CodePanel = ({createAttempts, readCodeOnly}) => {
     const classes = useStyles();
     const inputEl = React.useRef(null);
     const initCode =
@@ -28,7 +28,6 @@ const CodePanel = (props) => {
     const [sourceCode, setSourceCode] = useState(initCode);
 
     const onButtonClick = () => {
-        // `current` points to the mounted file input element
         inputEl.current.click();
     };
 
@@ -48,7 +47,11 @@ const CodePanel = (props) => {
     }
 
     const submitCode = () => {
-        props.createAttempts(sourceCode);
+        if (readCodeOnly) {
+            alert("Tests are being run, please wait until all tests are finished before submitting new code.");
+        } else {
+            createAttempts(sourceCode);
+        }
     }
 
 
@@ -56,7 +59,7 @@ const CodePanel = (props) => {
         <React.Fragment>
             <Typography variant="h6" gutterBottom>Code editor</Typography>
             <Paper>
-                <CodeEditor code={sourceCode} setSourceCode={setSourceCode}/>
+                <CodeEditor code={sourceCode} setSourceCode={setSourceCode} readCodeOnly={readCodeOnly}/>
             </Paper>
             <Container className={classes.container}>
                 <input
@@ -83,4 +86,4 @@ const CodePanel = (props) => {
 }
 
 
-export default connect(null, actions) (CodePanel);
+export default connect( null , actions) (CodePanel);

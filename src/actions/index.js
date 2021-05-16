@@ -8,9 +8,12 @@ export const generateTestCases = ()  => async dispatch => {
     dispatch({type: GENERATE_TESTS, payload: res.data});
 }
 
+export const resetState = () => dispatch => {
+    dispatch({type: RESET_STATE, payload: null});
+}
+
 export const createAttempts = ( code )  => async dispatch => {
     try {
-        dispatch({type: RESET_STATE, payload: null});
         const res = await axios.post(`${baseUrl}/attempts`, {code});
         dispatch({type: CREATE_ATTEMPTS, payload: res.data});
     } catch (e) {

@@ -3,8 +3,7 @@ import AceEditor from "react-ace";
 import "ace-builds/src-noconflict/mode-c_cpp";
 import "ace-builds/src-noconflict/theme-monokai";
 
-const CodeEditor = ({ code, setSourceCode }) => {
-  //const [sourceCode, setSourceCode] = useState(initCode);
+const CodeEditor = ({ code, setSourceCode, readCodeOnly }) => {
   return (
     <AceEditor
       placeholder="Enter your code here"
@@ -13,6 +12,7 @@ const CodeEditor = ({ code, setSourceCode }) => {
       mode="c_cpp"
       theme="monokai"
       name="blah2"
+      readOnly = {readCodeOnly}
       fontSize={14}
       onChange={setSourceCode}
       showGutter={true}

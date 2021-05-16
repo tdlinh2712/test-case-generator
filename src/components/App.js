@@ -54,14 +54,12 @@ const App = () => {
 
     return (
         <React.Fragment>
-            <Container>
-                <p>Test Tool</p>
-            </Container>
+            <Typography variant="h4" style={{padding:"10px"}} color="primary">Test Case Generator</Typography>
             <AppBar position="static">
-            <Tabs value={value} onChange={handleChange} >
-                <Tab label="Problem" {...a11yProps(0)} />
-                <Tab label="Script" {...a11yProps(1)} />
-            </Tabs>
+              <Tabs value={value} onChange={handleChange} centered>
+                  <Tab label="Problem" {...a11yProps(0)} />
+                  <Tab label="Script" {...a11yProps(1)} />
+              </Tabs>
             </AppBar>
             <TabPanel value={value} index={0}>
                 <ProblemTab />

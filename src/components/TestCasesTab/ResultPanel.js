@@ -38,11 +38,11 @@ const useStyles = makeStyles((theme) => {
   });
   
 
-const ResultPanel = ({ testCases, attemptId, fetchResults, getTestDetails }) => {
+const ResultPanel = ({ testCases, attemptId, fetchResults, testDetails, selectedTest, setSelectedTest }) => {
     const classes = useStyles();
-    const [selection, setSelection] = useState(null);
+    //const [selection, setSelection] = useState(null);
     useEffect(() => {
-        if (attemptId) {
+        if (attemptId && testDetails.length == 0) {
             fetchResults({ attemptId, testCases });
         }
     }, [attemptId]);
@@ -57,15 +57,13 @@ const ResultPanel = ({ testCases, attemptId, fetchResults, getTestDetails }) => 
                     <div style={{ height: 350, width: '100%' }} className={classes.root}>
                         <DataGrid 
                             rowHeight={25}
+                            headerHeight={50}
                             columns={[{field: 'No.'}, { field: 'id', width: 200 }, { field: 'Verdict', width: 200 }]}
                             rows={testCases ? testCases.map(({testCaseId, verdict}, index) => ({'No.': index, id: testCaseId, Verdict: verdict})) : []}
                             getRowClassName={(params) => `row-theme--${params.getValue('Verdict')}`}
-                            onRowSelected={(e) => setSelection(e.data)}
+                            onRowSelected={(e) => setSelectedTest(e.data)}
                         />
                     </div>
-                </div>
-                <div>
-                    <Logs test={selection}/>
                 </div>
             </Grid>
         </React.Fragment>
