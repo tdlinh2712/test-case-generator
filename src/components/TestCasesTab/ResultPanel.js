@@ -147,7 +147,7 @@ const ResultPanel = ({
           />
         </div>
       </Grid>
-      {readCodeOnly && progress !== 100 && (
+      {(readCodeOnly || progress == 100) && (
         <LinearProgressWithLabel value={progress} />
       )}
     </React.Fragment>
