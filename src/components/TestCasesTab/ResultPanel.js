@@ -100,8 +100,8 @@ const ResultPanel = ({
             rowHeight={25}
             headerHeight={50}
             columns={[
-              { field: "No.", sortable: false },
-              { field: "Test Type", width: 400 },
+              { field: "No.", width: 75, sortable: false },
+              { field: "Test Type", width: 290 },
               { field: "Size", width: 150, headerName: "Test Input Size" },
               {
                 field: "Verdict",
@@ -113,7 +113,7 @@ const ResultPanel = ({
                 field: "",
                 headerName: "Test Details",
                 headerClassName: "test-details--header",
-                width: 200,
+                width: 150,
                 sortable: false,
                 renderCell: (data) => (
                   <p
