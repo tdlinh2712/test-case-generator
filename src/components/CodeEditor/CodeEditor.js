@@ -8,7 +8,7 @@ const CodeEditor = ({ code, setSourceCode, readCodeOnly }) => {
     <AceEditor
       placeholder="Enter your code here"
       height="360px"
-      width="400px"
+      width="500px"
       mode="c_cpp"
       theme="monokai"
       name="blah2"
