@@ -10,6 +10,7 @@ import ProblemTab from "./ProblemTab";
 import TestCasesTab from "./TestCasesTab";
 import * as actions from "../actions";
 import { connect } from "react-redux";
+import { Helmet } from "react-helmet";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -53,6 +54,10 @@ const App = () => {
 
   return (
     <React.Fragment>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Automated Test Tool</title>
+      </Helmet>
       <Typography variant="h4" style={{ padding: "10px" }} color="primary">
         Automated Test Tool
       </Typography>

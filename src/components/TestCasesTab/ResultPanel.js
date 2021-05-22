@@ -96,12 +96,13 @@ const ResultPanel = ({
         </Typography>
         <div style={{ height: 350, width: "100%" }} className={classes.root}>
           <DataGrid
+            loading={readCodeOnly && !testCases}
             rowHeight={25}
             headerHeight={50}
             columns={[
               { field: "No.", sortable: false },
               { field: "Test Type", width: 400 },
-              { field: "Size", width: 100 },
+              { field: "Size", width: 150, headerName: "Test Input Size" },
               {
                 field: "Verdict",
                 headerName: "Verdict",
@@ -146,7 +147,9 @@ const ResultPanel = ({
           />
         </div>
       </Grid>
-      {readCodeOnly && <LinearProgressWithLabel value={progress} />}
+      {readCodeOnly && progress !== 100 && (
+        <LinearProgressWithLabel value={progress} />
+      )}
     </React.Fragment>
   );
 };
