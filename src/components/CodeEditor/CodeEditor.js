@@ -7,13 +7,14 @@ const CodeEditor = ({ code, setSourceCode, readCodeOnly }) => {
   return (
     <AceEditor
       placeholder="Enter your code here"
-      height = "300px"
-      width = "660px"
+      height = "360px"
+      width = "700px"
       mode="c_cpp"
       theme="monokai"
       name="blah2"
       readOnly = {readCodeOnly}
       fontSize={14}
+      showPrintMargin={false}      
       onChange={setSourceCode}
       showGutter={true}
       highlightActiveLine={true}
