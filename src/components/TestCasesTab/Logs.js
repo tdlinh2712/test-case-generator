@@ -36,7 +36,7 @@ const Logs = ({ test, testDetails }) => {
         <Grid container spacing={3}>
           <Grid item xs={6}>
             <Typography variant="subtitle1" gutterBottom>
-              Compiler Message
+              Test Result
             </Typography>
             <Box component="span" display="block" className={classes.box}>
               {testDetail == null ? (
