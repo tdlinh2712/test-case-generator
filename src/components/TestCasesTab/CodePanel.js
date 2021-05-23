@@ -59,7 +59,7 @@ const CodePanel = ({ createAttempts, readCodeOnly }) => {
     const reader = new FileReader();
     reader.onload = async (e) => {
       const text = e.target.result;
-      setSourceCode({ sourceCode: text });
+      setSourceCode(text);
     };
     if (e.target.files) {
       if (e.target.files[0]) {

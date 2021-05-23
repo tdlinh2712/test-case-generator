@@ -77,7 +77,38 @@ const ResultPanel = ({
   setSelectedTest,
   readCodeOnly,
 }) => {
+
+  const dataColumns = [
+    { field: "No.", width: 75, sortable: false },
+    { field: "Test Type", width: 250 },
+    { field: "Size", width: 125, headerName: "Input Size" },
+    {
+      field: "Verdict",
+      headerName: "Verdict",
+      headerClassName: "test-details--header",
+      width: 100,
+    },
+    {
+      field: "",
+      headerName: "Details",
+      headerClassName: "test-details--header",
+      width: 100,
+      sortable: false,
+      renderCell: (data) => (
+        <p
+          onClick={() => {
+            setSelectedTest(data.row);
+          }}
+          style={{ textDecoration: "underline", cursor: "pointer" }}
+        >
+          Details
+        </p>
+      ),
+    },
+  ]
+
   const classes = useStyles();
+
   useEffect(() => {
     if (attemptId && testDetails.length == 0) {
       fetchResults({ attemptId, testCases });
@@ -99,34 +130,7 @@ const ResultPanel = ({
             loading={readCodeOnly && !testCases}
             rowHeight={25}
             headerHeight={50}
-            columns={[
-              { field: "No.", width: 75, sortable: false },
-              { field: "Test Type", width: 290 },
-              { field: "Size", width: 150, headerName: "Test Input Size" },
-              {
-                field: "Verdict",
-                headerName: "Verdict",
-                headerClassName: "test-details--header",
-                width: 100,
-              },
-              {
-                field: "",
-                headerName: "Test Details",
-                headerClassName: "test-details--header",
-                width: 150,
-                sortable: false,
-                renderCell: (data) => (
-                  <p
-                    onClick={() => {
-                      setSelectedTest(data.row);
-                    }}
-                    style={{ textDecoration: "underline", cursor: "pointer" }}
-                  >
-                    Details
-                  </p>
-                ),
-              },
-            ]}
+            columns={dataColumns}
             rows={
               testCases
                 ? testCases.map(
@@ -144,6 +148,7 @@ const ResultPanel = ({
             getRowClassName={(params) =>
               `row-theme--${params.getValue("Verdict")}`
             }
+            onRowSelected={(e) => setSelectedTest(e.data)}
           />
         </div>
       </Grid>
