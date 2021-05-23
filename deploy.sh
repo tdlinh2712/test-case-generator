@@ -21,7 +21,7 @@ cluster_location=$(gcloud container clusters list --project ${project_name} | ta
 
 #Build docker image
 echo "------------BUILD------------"
-./builddocker.sh ${service_name} ${project_name} .
+builddocker.sh ${service_name} ${project_name} .
 
 #Deploy
 echo "------------DEPLOY-----------"
