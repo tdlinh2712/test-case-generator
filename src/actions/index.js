@@ -7,7 +7,7 @@ import {
   RESET_STATE,
 } from "./types";
 
-const baseUrl = "http://34.70.3.255:9090";
+const baseUrl = "https://34.70.3.255:9090";
 
 export const generateTestCases = () => async (dispatch) => {
   const res = await axios.get(`${baseUrl}/testCases`);
