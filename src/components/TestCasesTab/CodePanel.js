@@ -31,7 +31,8 @@ const CodePanel = ({ createAttempts, readCodeOnly }) => {
   const [checkBoxValues, setCheckBoxValues] = React.useState({
     shortestPathOnly: false,
     bothShortestAndSecondShortestPath: false,
-    edgeCase: false,
+    noPath: false,
+    inputError: false
   });
   const [sourceCode, setSourceCode] = React.useState(initCode);
   const handleChange = (event) => {
@@ -40,11 +41,11 @@ const CodePanel = ({ createAttempts, readCodeOnly }) => {
       [event.target.value]: event.target.checked,
     });
   };
-  const { shortestPathOnly, bothShortestAndSecondShortestPath, edgeCase } =
+  const { shortestPathOnly, bothShortestAndSecondShortestPath, noPath,inputError } =
     checkBoxValues;
 
   const isEnoughTestCase =
-    [shortestPathOnly, bothShortestAndSecondShortestPath, edgeCase].filter(
+    [shortestPathOnly, bothShortestAndSecondShortestPath, noPath,inputError].filter(
       (v) => v
     ).length > 0;
 
@@ -96,14 +97,24 @@ const CodePanel = ({ createAttempts, readCodeOnly }) => {
         </div>
         <div style={{ flexChild: 1, margin: 5 }}>
           <Typography variant="h6" gutterBottom>
-            Test Options
+            Test Generation Options
           </Typography>
           <Paper elevation={false}>
             <FormGroup required>
               <FormLabel component="legend" error={!isEnoughTestCase}>
                 Choose at least one*
               </FormLabel>
-
+               <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={noPath}
+                    onChange={handleChange}
+                    color="primary"
+                  />
+                }
+                label="No Path Exists"
+                value="noPath"
+              />
               <FormControlLabel
                 control={
                   <Checkbox
@@ -126,17 +137,20 @@ const CodePanel = ({ createAttempts, readCodeOnly }) => {
                 value="bothShortestAndSecondShortestPath"
                 label="Both Shortest And Second Shortest Path"
               />
+
+
               <FormControlLabel
                 control={
                   <Checkbox
-                    checked={edgeCase}
+                    checked={inputError}
                     onChange={handleChange}
                     color="primary"
                   />
                 }
-                label="Edge Case"
-                value="edgeCase"
+                label="Input Error"
+                value="inputError"
               />
+              
             </FormGroup>
           </Paper>
         </div>
