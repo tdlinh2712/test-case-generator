@@ -32,6 +32,8 @@ const testTypeDescription = {
   bothShortestAndSecondShortestPath: "Both Shortest And Second Shortest Path",
   edgeCase: "Edge Case",
   shortestPathOnly: "Shortest Path Only",
+  noPath: "No Path Exists",
+  inputError:"Input Error"
 };
 
 const useStyles = makeStyles((theme) => {
