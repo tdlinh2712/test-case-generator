@@ -33,7 +33,7 @@ const testTypeDescription = {
   edgeCase: "Edge Case",
   shortestPathOnly: "Shortest Path Only",
   noPath: "No Path Exists",
-  inputError:"Input Error"
+  inputError: "Input Error",
 };
 
 const useStyles = makeStyles((theme) => {
@@ -79,7 +79,6 @@ const ResultPanel = ({
   setSelectedTest,
   readCodeOnly,
 }) => {
-
   const dataColumns = [
     { field: "No.", width: 75, sortable: false },
     { field: "Test Type", width: 250 },
@@ -107,7 +106,7 @@ const ResultPanel = ({
         </p>
       ),
     },
-  ]
+  ];
 
   const classes = useStyles();
 
@@ -135,16 +134,19 @@ const ResultPanel = ({
             columns={dataColumns}
             rows={
               testCases
-                ? testCases.map(
-                    ({ type, size, verdict, testCaseId }, index) => ({
-                      "No.": index + 1,
-                      id: testCaseId,
-                      "Test Type": testTypeDescription[type],
-                      Size: size,
-                      Verdict: verdict,
-                      "Test Details": "",
+                ? testCases
+                    .filter((test) => testCases.indexOf(test) !== 3)
+                    .map(({ type, size, verdict, testCaseId }, index) => {
+                      console.log(testCaseId);
+                      return {
+                        "No.": index + 1,
+                        id: testCaseId,
+                        "Test Type": testTypeDescription[type],
+                        Size: size,
+                        Verdict: verdict,
+                        "Test Details": "",
+                      };
                     })
-                  )
                 : []
             }
             getRowClassName={(params) =>
