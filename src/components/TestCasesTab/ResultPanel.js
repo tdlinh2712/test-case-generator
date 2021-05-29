@@ -135,7 +135,7 @@ const ResultPanel = ({
             rows={
               testCases
                 ? testCases
-                    .filter((test) => testCases.indexOf(test) !== 3)
+                    .filter((test) => testCases.indexOf(test) !== 32)
                     .map(({ type, size, verdict, testCaseId }, index) => {
                       console.log(testCaseId);
                       return {
